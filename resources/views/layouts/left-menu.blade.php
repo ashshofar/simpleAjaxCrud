@@ -23,7 +23,10 @@
     <!-- sidebar menu -->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
-        
+        <ul class="nav side-menu">
+          <li  class="{{ Helper::activeIfSegment(2, 'class')}}" ><a href="{{ route('class.index') }}"><i class="fa fa-home"></i> Class</a></li>
+          <li  class="{{ Helper::activeIfSegment(2, 'student')}}" ><a href="{{ route('student.index') }}"><i class="fa fa-user"></i> Student</a></li>          
+        </ul>
       </div>
 
     </div>

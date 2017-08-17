@@ -15,9 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//STUDENT
-Route::group(['prefix' => 'student'], function () {
+//API
+Route::group(['prefix' => 'api'], function(){
 
-  Route::get('/','StudentController@index')->name('student.index');	
+	Route::post('/class', 'ApiController@saveClass')->name('api.class.save');
+	Route::get('/getClass', 'ApiController@getClass')->name('api.class.get');
+
+});
+
+//STUDENT
+Route::group(['prefix' => 'student'], function(){
+
+	Route::get('/','StudentController@index')->name('student.index');	
+
+});
+
+//CLASS
+Route::group(['prefix' => 'class'], function(){
+
+	Route::get('/', 'ClassController@index')->name('class.index');
 
 });
