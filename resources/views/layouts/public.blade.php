@@ -14,17 +14,18 @@
 
 	        <!-- page content -->
 	        <div class="right_col" role="main">
-	          <div class="">
+		          <div class="">
 
-	          	{{-- CONTENT --}}
-	          	@yield('main')
+		          	{{-- CONTENT --}}
+		          	@yield('main')
 	            
-	          </div>
+	          	</div>
+	
+	        	{{-- FOOTER --}}
+				@include('layouts.footer')
+	
 	        </div>
 	        <!-- /page content -->
-
-	        {{-- FOOTER --}}
-			@include('layouts.footer')
 
 	      </div>
 	    </div>

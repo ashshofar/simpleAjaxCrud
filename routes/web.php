@@ -20,6 +20,7 @@ Route::group(['prefix' => 'api'], function(){
 
 	Route::post('/class', 'ApiController@saveClass')->name('api.class.save');
 	Route::get('/getClass', 'ApiController@getClass')->name('api.class.get');
+	Route::post('/deleteClass', 'ApiController@deleteClass')->name('api.class.delete');
 
 });
 

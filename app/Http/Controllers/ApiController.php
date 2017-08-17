@@ -25,4 +25,14 @@ class ApiController extends Controller
     	$data = Kelas::all();
     	return $this->getResponse($data);
     }
+
+    public function deleteClass(Request $request)
+    {
+    	$id = $request->get('id');
+
+    	$data = Kelas::find($id);
+    	$data->delete();
+
+    	return $this->getResponse('success');
+    }
 }

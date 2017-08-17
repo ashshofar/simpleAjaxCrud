@@ -5,8 +5,19 @@
 	    "order": [[ 0, "asc" ]],
 	    "columns": [
 	    {
-	        "title": "Name",
-	        "data": "name"
+	    	"title"	: "No",
+	    	"width": "5%",
+	    	render	: function (data, type, row, meta) {
+		        return meta.row + meta.settings._iDisplayStart + 1;
+		    }
+	    },{
+	        "title"	: "Name",
+	        "data"	: "name"
+	    },{
+	    	"title"	: "Action",
+	    	"data"	: null,
+	    	"width": "20%",
+	        defaultContent: "</button><button class='btn btn-danger' id='deleteButton' ><i class='fa fa-trash'></i></button>"	    	
 	    }]
 	});
 
@@ -28,6 +39,31 @@
 	            }
 	    }); 
 	}
+
+	//Delete Button dataTables
+    $( "#class-table tbody" ).on('click','#deleteButton', function() {
+        var tr 		= $(this).closest('tr');
+        var data 	= classTable.row(tr).data();
+
+        var id_row 	 = data.id;
+        
+        console.log(id_row);
+
+        $.ajax({
+            url: '{{ route('api.class.delete') }}', // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: {
+            	'id' : data.id
+            }, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            cache: false,             // To unable request pages to be cached
+            success: function(data)   // A function to be called if request succeeds
+            {
+            	showSwal('Success', 'Class has been deleted', 1);
+            	clearForm();
+				getDataTableClass();
+            }
+        });
+    });
 
 	function clearForm(){
 		$( '#frmClass' ).each(function(){
@@ -69,8 +105,6 @@
         });
          
     });
-
-	
 	
 
 	$(function(){
